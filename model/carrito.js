@@ -1,19 +1,18 @@
-//switcheo de prods
+const CarritoModelMongoDB = require("./carritoMongoDB")
 
-const CarritoModelMongoDB = require("./carritoMongoDB");
+class CarritoModel {
 
-class CarritoModel{
     static get(tipo) {
-        switch (tipo) {
+        switch(tipo) {
             case 'MONGODB':
-                console.log('*** PERSISTENCIA EN MONGODB (carrito)')
+                console.log('**** PERSISTENCIA EN MONGODB (carrito) ****')
                 return new CarritoModelMongoDB()
-
-        
+            
             default:
-                console.log('*** PERSISTENCIA DEFAULT (carrito)')
+                console.log('**** PERSISTENCIA DEFAULT (carrito) ****')
                 return new CarritoModelMongoDB()
         }
     }
 }
+
 module.exports = CarritoModel

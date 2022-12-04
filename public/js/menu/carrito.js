@@ -1,7 +1,7 @@
 let mostrarCarrito = false
 
 async function renderTablaCarrito(carrito) {
-    console.log(carrito)
+    //console.log(carrito)
     
     try {
 
@@ -23,10 +23,11 @@ async function renderTablaCarrito(carrito) {
 
 function initCarrito() {
     console.warn('initCarrito()')
+
     const btnCarrito = document.getElementsByClassName('search-bar__carrito-container')[0]
     const elemSectionCarrito = document.getElementsByClassName('section-carrito')[0]
 
-    btnCarrito.addEventListener('click', async ()=> {
+    btnCarrito.addEventListener('click', async () => {
         mostrarCarrito = !mostrarCarrito
 
         try {

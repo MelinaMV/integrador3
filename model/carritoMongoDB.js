@@ -1,34 +1,27 @@
 const mongoose = require('mongoose')
 
-// Creamos esquema del documento carrito
-
+/* Esquema del documento carrito */
 const carritoSchema = mongoose.Schema({
     carrito: Array
 })
 
-// Definimos el modelo del documento almacenado
-//en una coleccion
-
+/* Modelo del documento almacenado en una colección */
 const CarritoModel = mongoose.model('carritos', carritoSchema)
 
-//---------------------------------
+/* ---------------------------------------------------------- */
 
-class CarritoModelMongoDB{
+class CarritoModelMongoDB {
 
-    //-----------------------------
-    //averiguar como agregar el read o update
-    //de la misma manera q en prodmongodb
-
-    //CRUD -> C: create --> http metod post
+    /* ----------------------------------------------------- */
+    /* CRUD -> C: Create -> http method POST */
     async createCarrito(carrito) {
         try {
-            const carritoSave = new CarritoModel({carrito}) //carrito:carrito
+            const carritoSave = new CarritoModel({ carrito }) // { carrito: carrito }
             await carritoSave.save()
             return carrito
         } catch (error) {
             console.log(`Error en createCarrito: ${error}`)
-            return {} // controlo en caso que venga al catch y 
-            //me devuelve un array vacio
+            return {}
         }
     }
 }

@@ -2,11 +2,11 @@
 //guarda asincronicamente
 
 class CarritoService {
-    URL_CARRITO = 'https://633ccbe57e19b17829025dff.mockapi.io/carrito/'
+    //URL_CARRITO = 'https://615d8b5212571a00172076ba.mockapi.io/carrito/'
+    URL_CARRITO = '/api/carrito/'
 
     async guardarCarritoServicio(carrito) {
-        //                    usa el metodo post declrado en http client
-        const carritoGuardado = await htpp.post(this.URL_CARRITO, carrito)
+        const carritoGuardado = await http.post(this.URL_CARRITO, carrito)
         return carritoGuardado
     }
 

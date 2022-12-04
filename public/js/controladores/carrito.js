@@ -1,109 +1,81 @@
-
-
 class CarritoController extends CarritoModel {
 
     constructor() {
-        //llamar a carrito model
-        //si o si hacer el super
         super()
-
-
-        //averiguar que hay en el local storage
-        //si se encuantra
+        
         try {
+            // console.log(JSON.parse(localStorage.getItem('carrito')))
+            this.carrito = JSON.parse(localStorage.getItem('carrito')) || []
 
-            this.carrito = JSON.parse(localStorage.getItem('carrito')) 
-            || [] 
-            
-        } catch (error) { //sino
+        } catch (error) {
 
-            console.error('Algo ocurrio con la lectura del local storage', error)
-
-            this.carrito = []  //inicializa en vacio el carrito
+            console.error('Algo ocurrió con la lectura del localStorage', error)
+            this.carrito = []
             localStorage.setItem('carrito', this.carrito)
-            //se crea en el local storage vacio o no
             
         }
 
-        
-        
     }
-    //metodos
-    
-     elProductoEstaEnElCarrito(producto) {
+
+    elProductoEstaEnElCarrito(producto) {
         return this.carrito.filter(prod => prod.id == producto.id).length
     }
-//--
 
     obtenerProductoDeCarrito(producto) {
-        return this.carrito.find(prod => prod.id == producto.id )
-    
+        return this.carrito.find(prod => prod.id == producto.id)
     }
 
-//--
-
     agregarAlCarrito(producto) {
-        console.log(producto)//no func
+        console.log(producto)
 
-        //verficar si el prod esta en el carrito
         if(!this.elProductoEstaEnElCarrito(producto)) {
-            console.log('Ya esta en el carrito')
             producto.cantidad = 1
             this.carrito.push(producto)
-        }
-        else {
-            console.log('Producto agregado')
+        } else {
             const productoDeCarrito = this.obtenerProductoDeCarrito(producto)
             productoDeCarrito.cantidad++
         }
 
         localStorage.setItem('carrito', JSON.stringify(this.carrito))
-    
-    }
 
-//--
+    }
 
     async borrarProductoCarrito(id) {
         
         try {
-            //busco el indice al id que me estan pasando
-        const index = this.carrito.findIndex(prod => prod.id == id)
-        //me devuelve un numero
-        this.carrito.splice(index, 1)
-        localStorage.setItem('carrito', JSON.stringify(this.carrito))
+            const index = this.carrito.findIndex(prod => prod.id == id)
+            this.carrito.splice(index, 1)
+            localStorage.setItem('carrito', JSON.stringify(this.carrito))
 
-        await renderTablaCarrito(this.carrito)
-
+            await renderTablaCarrito(this.carrito)
         } catch (error) {
-            console.error(error)
+            console.log(error)
         }
-    
     }
-
-//--
 
     async enviarCarrito() {
         
         try {
             const elemSectionCarrito = document.getElementsByClassName('section-carrito')[0]
 
-        elemSectionCarrito.innerHTML = '<h2>Enviando carrito...</h2>'
-        await carritoService.guardarCarritoService(this.carrito)
-        this.carrito = []
-        localStorage.setItem('carrito', JSON.stringify(this.carrito))
-        
+            elemSectionCarrito.innerHTML = '<h2>Enviando carrito...</h2>'
+            const preference = await carritoService.guardarCarritoServicio(this.carrito)
+            this.carrito = []
+            localStorage.setItem('carrito', JSON.stringify(this.carrito))
 
-        elemSectionCarrito.innerHTML = '<h2>Enviando carrito..<b>OK!</b></h2>'
+            elemSectionCarrito.innerHTML = '<h2>Enviando carrito <b>OK!</b></h2>'
+
+            setTimeout( async () => {
+                elemSectionCarrito.classList.remove('section-carrito--visible')
+                /* mostraCarrito = false */
+                console.log(preference)
+                await renderPago(preference)
+            }, 0)
 
         } catch (error) {
             console.error(error)
         }
-    }//borrar
-    async mostrarTotal(){
-        console.log(this.carrito)
-        const mostrar = document.querySelector("#total")
-        console.log(mostrar)
-        mostrar.innerHTML = this.carrito.length
+
     }
 
 }

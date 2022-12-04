@@ -10,27 +10,22 @@ class FormularioAlta {
     /^.+$/, // regexp marca
     /^.+$/, // regexp categoria
     /^.+$/, // regexp detalles
-    ///^.+$/,   // regexp foto
   ]
 
-  //-------  DRAG AND DROP ---------------
-
+  /* --------------------------- drag and drop --------------------------- */
   imagenSubida = ''
   dropArea = null
   progressBar = null
-
-
-  //-------  DRAG AND DROP--------------
-
+  /* --------------------------- drag and drop --------------------------- */
 
   constructor(renderTablaAlta, guardarProducto) {
     // console.log(renderTablaAlta, guardarProducto) // Referencias de las funciones
-    this.inputs = document.querySelectorAll("main form input")
+    this.inputs = document.querySelectorAll("main form input.data-validation")
     this.form = document.querySelector("main form")
     this.button = document.querySelector("main form button")
 
     this.button.disabled = true
-
+    //console.log(this.inputs) #TODO Borrar console.log
     this.inputs.forEach((input, index) => {
       if (input.type != "checkbox") {
         input.addEventListener("input", () => {
@@ -49,44 +44,48 @@ class FormularioAlta {
       if(guardarProducto) guardarProducto(producto)
     })
 
-    
-  //-------  DRAG AND DROP - acciones al subir img -----
+    /* --------------------------- drag and drop --------------------------- */
+    this.dropArea = document.getElementById('drop-area')
+    this.progressBar = document.getElementById('progress-bar')
 
-//--el dropArea que estaba en null arriba ahora lo selecciono
-  this.dropArea = document.getElementById('drop-area')
-  this.progressBar = document.getElementById('progress-bar')
-
-
-//--para cancelar el evento automatico del drag and drop
-  ;['dragenter', 'dragover', 'dragleave', 'drop'].forEach( eventName => {
-    this.dropArea.addEventListener(eventName, e => e.preventDefault())
-    //para que no se abra la imagen en el body
-    document.body.addEventListener(eventName, e => e.preventDefault())
-  })
-  
-
-//--para remarcar la zona de drop al arrastrar
-  ;['dragenter', 'dragover'].forEach( eventName => {
-    this.dropArea.addEventListener(eventName,  () => {
-      this.dropArea.classList.add('highlight')
+    // Para cancelar el evento automática de drag and drop
+    ;['dragenter', 'dragover', 'dragleave', 'drop'].forEach( eventName => {
+      this.dropArea.addEventListener(eventName, e => e.preventDefault())
+      document.body.addEventListener(eventName, e => e.preventDefault())
     })
-  })
-      //--al salir de la zona se va el color puesto arriba
-  ;['dragleave', 'drop'].forEach( eventName => {
-    this.dropArea.addEventListener(eventName,  () => {
-      this.dropArea.classList.remove('highlight')
+
+    // Para remarcar la zona de drop al arrastrar una imagne dentro de ella
+    ;['dragenter', 'dragover'].forEach( eventName => {
+      this.dropArea.addEventListener(eventName,  () => {
+        this.dropArea.classList.add('highlight')
+      } )
     })
-  })
 
-  this.dropArea.addEventListener('drop', e => {
-    console.log(e)
-    const dataTransf = e.dataTransfer
-    const files = dataTransf.files
+    ;['dragleave', 'drop'].forEach( eventName => {
+      this.dropArea.addEventListener(eventName, () => {
+        this.dropArea.classList.remove('highlight')
+      })
+    })
 
-    this.handleFiles(files)
-  })
+    this.dropArea.addEventListener('drop', e => {
+      console.log(e)
+      const dataTransf = e.dataTransfer
+      const files = dataTransf.files
 
-  //-------  DRAG AND DROP  fin  --------------
+      this.handleFiles(files)
+    })
+
+    /* --------------------------- drag and drop --------------------------- */
+
+    const inputFoto = document.querySelector('#foto')
+
+    inputFoto.addEventListener('change', () => {
+      console.log('Cambió el input')
+
+      const files = inputFoto.files
+
+      this.handleFiles(files)
+    })
 
   }
 
@@ -98,7 +97,7 @@ class FormularioAlta {
       this.camposValidos[2] &&
       this.camposValidos[3] &&
       this.camposValidos[4] &&
-      this.camposValidos[5] 
+      this.camposValidos[5]
 
     return !valido
   }
@@ -137,8 +136,8 @@ class FormularioAlta {
       marca: this.inputs[3].value,
       categoria: this.inputs[4].value,
       detalles: this.inputs[5].value,
-      foto: this.imagenSubida ? `/uploads/${this.imagenSubida}` : '',
-      envio: this.inputs[7].checked,
+      foto: this.imagenSubida ? `/uploads/${this.imagenSubida}`: '/uploads/sinimagen.jpg',
+      envio: this.inputs[6].checked,
     }
   }
 
@@ -153,40 +152,39 @@ class FormularioAlta {
     this.button.disabled = true
     this.camposValidos = [false, false, false, false, false, false]
 
-    //limpiar imagen arrastrada
     const img = document.querySelector('#gallery img')
     img.src = ''
 
-    //inicializar barra de progreso
     this.initializeProgress()
     this.imagenSubida = ''
   }
 
-  //-------  DRAG AND DROP ---------------
-
+  /* -------------- drag and drop ------------------ */
   initializeProgress() {
     this.progressBar.value = 0
   }
+
   updateProgress(porcentaje) {
     this.progressBar.value = porcentaje
   }
-  previewFile(file) { //filereader (lee el archivo)
-    const reader = new FileReader()
+
+  previewFile(file) {
+    const reader = new FileReader() // https://developer.mozilla.org/es/docs/Web/API/FileReader
     reader.readAsDataURL(file)
     //reader.addEventListener('loadend', () => {})
     reader.onloadend = function() {
       const img = document.querySelector('#gallery img')
-      img.src = reader.result //dibuja en la vista la imagen cargada
+      img.src = reader.result
     }
   }
-  //arranca todo el processo
+
   handleFiles = files => {
-    //console.log(files)
-    const file = files[0]     // obtiene la img y la guarda en file
-    this.initializeProgress() // inicializa el progreso en 0
-    this.uploadFile(file)     // carga la img
-    this.previewFile(file)    // prefisualiza y sube al backend la img
+    const file = files[0]
+    this.initializeProgress()
+    this.uploadFile(file)
+    this.previewFile(file)
   }
+
   uploadFile = file => {
     const url = '/api/upload'
 
@@ -212,13 +210,9 @@ class FormularioAlta {
 
   }
 
+  /* -------------- drag and drop ------------------ */
 
-
-  //-------  DRAG AND DROP--------------
-
-
-
-} //-- aca termina la class FormularioAlta
+}
 
 // Rendereabamos la plantilla
 const renderTablaAlta = (validos, productos) => {
