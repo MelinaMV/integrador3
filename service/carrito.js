@@ -1,6 +1,6 @@
 const CarritoModel = require("../model/carrito");
 
-//aca tengo la instancia del modelo (en model)
+// Acá tengo la instancia del modelo (model)
 const model = CarritoModel.get(process.env.PERSISTENCIA || 'MONGODB')
 
 const guardarCarrito = async carrito => {

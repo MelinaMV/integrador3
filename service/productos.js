@@ -1,4 +1,5 @@
 const ProductoModel = require("../model/productos");
+const ProductoValidation = require("../utils/producto.validation");
 
 const model = ProductoModel.get(process.env.PERSISTENCIA || 'MONGODB') // FILE | MONGODB
 
@@ -13,13 +14,31 @@ const obtenerProductos = async () => {
 }
 
 const guardarProducto = async (producto) => {
-    const productoGuardado = await model.createProducto(producto)
-    return productoGuardado
+
+    const errorValidacion = ProductoValidation.validar(producto)
+
+    if(!errorValidacion) {
+        const productoGuardado = await model.createProducto(producto)
+        return productoGuardado 
+    } else {
+        console.log('Error en GuardarProducto', errorValidacion.details[0].message)
+        return {}
+    }
+    
 }
 
 const actualizarProducto = async (id, producto) => {
-    const productoActualizado = await model.updateProducto(id, producto)
-    return productoActualizado
+
+    const errorValidacion = ProductoValidation.validar(producto)
+
+    if(!errorValidacion) {
+        const productoActualizado = await model.updateProducto(id, producto)
+        return productoActualizado 
+    } else {
+        console.log('Error en actualizarProducto', errorValidacion.details[0].message)
+        return {}
+    }
+    
 }
 
 const borrarProducto = async id => {
