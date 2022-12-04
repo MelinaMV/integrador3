@@ -1,0 +1,13 @@
+[
+	{
+		"nombre": "Producto AA",
+		"precio": "1234",
+		"stock": "3",
+		"marca": "Marca AA",
+		"categoria": "Categoria AA",
+		"detalles": "Detalle AA",
+		"foto": "fotoAA.jpg",
+		"envio": "true",
+		"id": "1"
+	}
+]

@@ -1,0 +1,77 @@
+{{#if carrito.lenght}}
+
+    <button class="btn__enviarCarrito" onclick="carritoController.enviarCarrito()">Enviar</button>
+
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Marca</th>
+            <th>Foto</th>
+            <th>Cantidad</th>
+            <th>Envio</th>
+            <th>Accion</th>
+        </tr>{{#if carrito.length }}
+    <button class="btn__enviarCarrito" onclick="carritoController.enviarCarrito()">Enviar</button>
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Marca</th>
+            <th>Foto</th>
+            <th>Cantidad</th>
+            <th>Envio</th>
+            <th>Acción</th>
+        </tr>
+
+        {{#each carrito}}
+        <tr>
+            <td>{{nombre}}</td>
+            <td>{{precio}}</td>
+            <td>{{marca}}</td>
+            <td>
+                <img style="display:block; margin: 0 auto;" src="{{imagen}}" width="50" alt="{{nombre}}">
+            </td>
+            <td>{{cantidad}}</td>
+            
+            {{#if envio}}
+                <td>Si</td>
+            {{else}}
+                <td>No</td>
+            {{/if}}
+            
+            <td>
+                <button onclick="carritoController.borrarProductoCarrito({{id}})">borrar</button>
+            </td>
+        </tr>
+         {{/each}}
+    </table>
+{{else}}
+    <h2>El carrito está vacío</h2>
+{{/if}}
+
+
+
+        <tr>
+            <td>{{nombre}}</td>
+            <td>{{precio}}</td>
+            <td>{{marca}}</td>
+            <td>
+                <img style="display:block; margin: 0 auto;" src="{{imagen}}" width="50" alt="{{nombre}}">
+            </td>
+            <td>{{cantidad}}</td>
+
+            {{#if envio}}
+            <td>Si</td>
+            {{else}}
+            <td>No</td>
+            {{/if}}
+            
+            <td>
+                <button onclick="carritoController.borrarProductoCarrito({{id}}">borrar</button>
+            </td>
+        </tr>
+    </table>
+{{else}}
+    <h2>El carrito esta vacio</h2>
+{{/if}}

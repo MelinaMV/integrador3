@@ -1,0 +1,210 @@
+@import url("https://fonts.googleapis.com/css2?family=Belleza&display=swap");
+
+body {
+  font-family: "Belleza", sans-serif;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #163943;
+}
+
+.texto{
+  margin-top: 25px;
+  color: #e4e4e4;
+}
+.section-contacto{
+  margin: 55px auto;
+  padding: 50px;
+    @media (max-width: 768px) {
+        width: 770px;
+        font-weight: 100;
+        margin-top: 8px;;
+    }
+}
+.section-contacto::after {
+  display: block;
+  height: 30px;
+  width: 100%;
+  position: absolute;
+  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.19);
+}
+
+h1 {
+  margin-top: 20px;
+  background: #109d9c;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  font-family: "belleza", sans-serif;
+  font-size: 30px;
+  padding: 15px;
+  color: white;
+  text-shadow: 0 3px 3px #424242;
+  position: relative;
+  text-align: center;
+}
+.contactobutton {
+  background: #109d9c;
+  box-shadow: 1px 1px 0 0 #831f5b, 2px 2px 0 0 #831f5b, 3px 3px 0 0 #831f5b;
+  text-align: center;
+  display: block;
+  width: 100%;
+  height: 50px;
+  margin-top: 20px;
+  margin-bottom: 2px;
+  cursor: pointer;
+}
+.contactobutton:hover {
+  box-shadow: 1px 1px 0 0 #831f5b, 0px 0px 0 0 #831f5b, 0px 0px 0 0 #831f5b;
+  margin-top: 22px;
+  margin-left: 2px;
+}
+.mail {
+  margin-top: 11px;
+  font-size: 15px;
+  display: inline-block;
+  border-top: 30px solid transparent;
+  border-left: 38px solid #831f5b;
+  position: relative;
+}
+.mail:before {
+  content: "";
+  top: -30px;
+  left: -35px;
+  display: block;
+  position: absolute;
+  border-top: 14px solid #831f5b;
+  border-left: 20px solid transparent;
+  border-right: 17px solid transparent;
+  border-bottom: 20px solid transparent;
+  font-size: 12px;
+}
+.mail::after {
+  display: block;
+  content: "";
+  position: absolute;
+  border-top: 29px solid transparent;
+  border-right: 40px solid #831f5b;
+  left: -34px;
+  bottom: 0;
+}
+#checkcontacto {
+  position: absolute;
+  left: -9999px;
+}
+.contactoform {
+  overflow: hidden;
+  max-height: 0px;
+  -o-transition: all linear 1s;
+  -ms-transition: all linear 1s;
+  transition: all linear 1s;
+}
+#checkcontacto:checked + .contactoform {
+  max-height: 1000px;
+}
+.input_wrapper {
+  position: relative;
+}
+.textarea_wrapper textarea {
+  margin-top: 20px;
+  max-height: 180px;
+  display: block;
+  width: 100%;
+  background-color: #faf0e5;
+  border: 1px solid #dadada;
+  box-shadow: 0 0 1px 0 #e4e4e4;
+  padding: 15px;
+  -ms-transition: all 250ms ease;
+  -o-transition: all 250ms ease;
+  transition: all 250ms ease;
+  color: #e0d7d7;
+}
+.input_wrapper input {
+  margin-top: 15px;
+  display: block;
+  width: 100%;
+  background: #ffffffd3;
+  border: 1px solid #cccccc;
+  box-shadow: 0 0 5px 0 #e4e4e4;
+  padding: 15px;
+  -ms-transition: all 250ms ease;
+  -o-transition: all 250ms ease;
+  transition: all 250ms ease;
+  color: #e0d7d7;
+  text-indent: 15%;
+}
+.input_wrapper input:focus {
+  background: rgba(209, 49, 78, 0.05);
+  box-shadow: inset 2px 2px 5px 0 #cccccc;
+  outline: none;
+}
+.input_wrapper label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: #109d9c;
+  color: white;
+  font-family: "Belleza", sans-serif;
+  width: 15%;
+  text-align: center;
+  line-height: 50px;
+  -ms-transition: all 250ms ease;
+  -o-transition: all 250ms ease;
+  transition: all 250ms ease;
+}
+.input_wrapper input:focus + label {
+  left: 85%;
+}
+.textarea_wrapper textarea {
+  margin-top: 20px;
+  display: block;
+  width: 100%;
+  min-height: 150px;
+  background: #ffffffd3;
+  border: 1px solid #dadada;
+  box-shadow: 0 0 1px 0 #e4e4e4;
+  padding: 8px;
+  -ms-transition: all 250ms ease;
+  -o-transition: all 250ms ease;
+  transition: all 250ms ease;
+  color: #e0d7d7;
+}
+.textarea_wrapper textarea:focus {
+  background: rgba(209, 49, 78, 0.05);
+  box-shadow: inset 2px 2px 5px 0 #cccccc;
+  outline: none;
+}
+.submit_wrapper {
+  text-align: center;
+}
+.submit_wrapper input {
+  text-align: center;
+  display: inline-block;
+  width: 40%;
+  height: 50px;
+  margin-top: 10px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  background: #109d9c;
+  color: white;
+  font-family: "Belleza", sans-serif;
+  font-size: 15px;
+  border: none;
+  box-shadow: 1px 1px 0 0 #831f5b, 2px 2px 0 0 #831f5b, 3px 3px 0 0 #831f5b;
+  -ms-transition: all 250ms ease;
+  -o-transition: all 250ms ease;
+  transition: all 250ms ease;
+}
+.submit_wrapper input:hover {
+  box-shadow: 1px 1px 0 0 #831f5b, 0px 0px 0 0 #831f5b, 0px 0px 0 0 #831f5b;
+  margin-top: 22px;
+  margin-left: 2px;
+  margin-bottom: 2px;
+
+}
+hr{
+  margin: 10px;
+}
+
+
+

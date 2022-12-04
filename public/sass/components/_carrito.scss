@@ -1,0 +1,40 @@
+
+
+.section-carrito {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top: 120px;
+    left: 120px;
+    right: 120px;
+    bottom: 120px;
+    box-shadow: .3em .3em 10em .3em rgba(0,0,0,1);
+    color: aliceblue;
+    font-family: "Belleza", sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+
+    @media (max-width:768px) {
+        top: 120px;
+        right: 70px;
+        left: 70px;
+    }
+
+    &--visible {
+        display: block;
+        background-color: #109d9df8;
+
+        
+
+    }
+.btn__enviarCarrito{
+    background-color: rgb(3, 243, 203);
+    display: block;
+    justify-content: flex-end;
+    font-size: 20px;
+    height: 40px;
+    width: 80px;
+}
+}
+
+

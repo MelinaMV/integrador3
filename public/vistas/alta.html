@@ -1,0 +1,72 @@
+<div class="container-alta">
+  <h1>Alta</h1>
+
+  <form autocomplete="off">
+    <!-- Campo de nombre -->
+    <label for="nombre">Nombre</label>
+    <input type="text" id="nombre" />
+    <div class="mensaje-validacion"></div>
+
+    <!-- Campo de precio -->
+    <label for="precio">Precio</label>
+    <input type="text" id="precio" />
+    <div class="mensaje-validacion"></div>
+
+    <!-- Campo de stock -->
+    <label for="stock">Stock</label>
+    <input type="text" id="stock" />
+    <div class="mensaje-validacion"></div>
+
+    <!-- Campo de marca -->
+    <label for="marca">Marca</label>
+    <input type="text" id="marca" />
+    <div class="mensaje-validacion"></div>
+
+    <!-- Campo de categoria -->
+    <label for="categoria">Categoría</label>
+    <input type="text" id="categoria" />
+    <div class="mensaje-validacion"></div>
+
+    <!-- Campo de detalles -->
+    <label for="detalles">Detalles</label>
+    <input type="text" id="detalles" />
+    <div class="mensaje-validacion"></div>
+
+    <!-- Campo de foto -->
+    <!-- <label for="foto">Foto</label>
+    <input type="text" id="foto" />
+    <div></div> -->
+
+    <!--#drop-area>p+br+input+label+br+br+progress+div>img-->
+    <div id="drop-area">
+      <p>Subir imagen al servidor con <b>file dialog</b> o con <b>drag and drop</b> dentro del area punteada </p>
+      <br>
+      <input type="file" id="foto" accept="image/*">
+      <label class="button" for="foto">File Dialog</label>
+      <br><br>
+
+      <progress id="progress-bar" max="100" value="0"></progress>
+      
+      <div id="gallery">
+
+        <img src="" alt="">
+        
+      </div>
+    </div>
+
+    <!-- Campo de envio -->
+    <label for="envio">Envío</label>
+    <input type="checkbox" id="envio" />
+    <div></div>
+
+    <button>Agregar</button>
+  </form>
+
+  <hr />
+  <h2>Listado de productos</h2>
+  <hr />
+
+  <div id="listado-productos"></div>
+
+  <a href="#" class="close"></a>
+</div>
