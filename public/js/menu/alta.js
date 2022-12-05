@@ -12,11 +12,11 @@ class FormularioAlta {
     /^.+$/, // regexp detalles
   ]
 
-  /* --------------------------- drag and drop --------------------------- */
+  /* --------------- drag and drop --------------------------- */
   imagenSubida = ''
   dropArea = null
   progressBar = null
-  /* --------------------------- drag and drop --------------------------- */
+  /* --------------- drag and drop --------------------------- */
 
   constructor(renderTablaAlta, guardarProducto) {
     // console.log(renderTablaAlta, guardarProducto) // Referencias de las funciones
@@ -25,7 +25,6 @@ class FormularioAlta {
     this.button = document.querySelector("main form button")
 
     this.button.disabled = true
-    //console.log(this.inputs) #TODO Borrar console.log
     this.inputs.forEach((input, index) => {
       if (input.type != "checkbox") {
         input.addEventListener("input", () => {
@@ -44,7 +43,7 @@ class FormularioAlta {
       if(guardarProducto) guardarProducto(producto)
     })
 
-    /* --------------------------- drag and drop --------------------------- */
+    /* ------------ drag and drop --------------------------- */
     this.dropArea = document.getElementById('drop-area')
     this.progressBar = document.getElementById('progress-bar')
 
@@ -75,7 +74,7 @@ class FormularioAlta {
       this.handleFiles(files)
     })
 
-    /* --------------------------- drag and drop --------------------------- */
+    /* ----------- drag and drop --------------------------- */
 
     const inputFoto = document.querySelector('#foto')
 
@@ -126,6 +125,7 @@ class FormularioAlta {
     divs[index].innerHTML = mensaje
     divs[index].style.display = mensaje ? "block" : "none"
   }
+  //"C:\Users\Melina\Desktop\denuevo\Integrador-3era-parte-master\Integrador-3era-parte-master"
 
   // Producto ingresado en el formulario
   leerProductoIngresado() {
@@ -137,7 +137,7 @@ class FormularioAlta {
       categoria: this.inputs[4].value,
       detalles: this.inputs[5].value,
       foto: this.imagenSubida ? `/uploads/${this.imagenSubida}`: '/uploads/sinimagen.jpg',
-      envio: this.inputs[6].checked,
+      envio: this.inputs[6].checked, //7? 
     }
   }
 
@@ -198,7 +198,7 @@ class FormularioAlta {
       this.updateProgress(porcentaje)
     })
 
-    xhr.addEventListener('load', () => { // readyState === 4
+    xhr.addEventListener('load', () => { //readyState === 4
       if ( xhr.status === 200) {
         const objImagen = JSON.parse(xhr.response) 
         this.imagenSubida = objImagen.nombre // {nombre: 'imagen.jpg'}

@@ -15,7 +15,7 @@ class ProductoValidation {
             envio: Joi.boolean().required(),
         })
 
-        const { error } = productoSchema.validate(producto) // El método validate te devuelve un obj
+        const { error } = productoSchema.validate(producto) // El método validate devuelve un obj
 
         console.log(error) // Si hay error, tiene contenido. Si lo hay contenido dentro error, quiere decir que no ocurrió ningún problema de validación
         return error
