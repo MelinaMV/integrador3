@@ -112,7 +112,7 @@ class ProductoModelMongoDB {
         
         try {
             //await ProductoModel.deleteOne({_id: id})    
-            const productoBorrado = await ProductoModel.findByIdAndDelete(id).lean()
+            const productoBorrado = await ProductoModel.findByIdAndDelete(id)
             return this.genIdKey(productoBorrado)
 
         } catch (error) {
