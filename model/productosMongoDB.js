@@ -19,7 +19,7 @@ const ProductoModel = mongoose.model('productos', productoSchema)
 
 class ProductoModelMongoDB {
 
-    pk = '_id'
+   static pk = '_id'
 
     async conectarDB() {
 
@@ -31,10 +31,10 @@ class ProductoModelMongoDB {
         }
     }  
 
-    genIdKey(obj) { // array o un obj
-        //console.log(obj)
-        if(Array.isArray(obj)) { // true o false
-            // Sacarle el guión al ID de los documentos.
+    genIdKey(obj) {
+
+        if(Array.isArray(obj)) { // devuelve true o false
+            // Sacarle el guión al ID de los documentos:
             for(let i=0; i<obj.length; i++) {
                 obj[i].id = obj[i][this.pk] // this._id => this.id
             }
@@ -55,7 +55,7 @@ class ProductoModelMongoDB {
             const productoSave = new ProductoModel(producto)
             await productoSave.save()
 
-            const productos = await ProductoModel.find({}).lean() // lean() => convertir el obj mongoose en un obj de vanilla js
+            const productos = await ProductoModel.find({}).lean() // lean() => convierte el obj mongoose en un obj de vanilla js
             const productoGuardado = productos[productos.length-1]
             return this.genIdKey(productoGuardado)
             
@@ -112,7 +112,7 @@ class ProductoModelMongoDB {
         
         try {
             //await ProductoModel.deleteOne({_id: id})    
-            const productoBorrado = await ProductoModel.findByIdAndDelete(id)
+            const productoBorrado = await ProductoModel.findByIdAndDelete(id).lean()
             return this.genIdKey(productoBorrado)
 
         } catch (error) {
