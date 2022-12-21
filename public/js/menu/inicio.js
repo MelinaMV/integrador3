@@ -19,9 +19,8 @@ function agregarCarrito(e, id, ref) {
     e.preventDefault()
     //console.log(id)
     //console.log(ref)
+
     const producto = productoController.productos.find(producto => producto.id == id)
-    //debugger
-    console.log(producto)
     carritoController.agregarAlCarrito(producto)
 }
 

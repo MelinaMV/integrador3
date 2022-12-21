@@ -19,7 +19,7 @@ const ProductoModel = mongoose.model('productos', productoSchema)
 
 class ProductoModelMongoDB {
 
-   static pk = '_id'
+    pk = '_id'
 
     async conectarDB() {
 

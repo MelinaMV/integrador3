@@ -65,9 +65,10 @@ class CarritoController extends CarritoModel {
 
             elemSectionCarrito.innerHTML = '<h2>Enviando carrito <b>OK!</b></h2>'
 
+            //ejecutar codigo en un segundo plano
             setTimeout( async () => {
                 elemSectionCarrito.classList.remove('section-carrito--visible')
-                /* mostraCarrito = false */
+                /* mostrarCarrito = false */
                 console.log(preference)
                 await renderPago(preference)
             }, 0)
