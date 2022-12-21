@@ -1,6 +1,5 @@
-
-
 .section-carrito {
+    padding: 20px;
     display: none;
     position: fixed;
     z-index: 1;
@@ -22,18 +21,30 @@
 
     &--visible {
         display: block;
-        background-color: #109d9df8;
+        background: linear-gradient(to top, #143f4b, #2d7386);
 
         
 
     }
 .btn__enviarCarrito{
-    background-color: rgb(3, 243, 203);
-    display: block;
-    justify-content: flex-end;
-    font-size: 20px;
-    height: 40px;
-    width: 80px;
+   
+    margin-bottom: 10px;
+    font-family: 'trebuchet ms';
+    color: #9FEAFC !important;
+    font-size: 19px;
+    text-shadow: 1px 1px 0px #7CACDE;
+    box-shadow: 5px 3px 6px #173D47;
+    padding: 12px 34px;
+    border-radius: 10px;
+    border: 0px solid #0F272E;
+    background: #123038;
+    background: linear-gradient(to top, #123038, #42AFCC);
+
+  &:hover{
+    color: #F9FCFC !important;
+    background: #123038;
+    background: linear-gradient(to top, #123038, #42AFCC);
+  }
 }
 }
 
