@@ -24,7 +24,7 @@ class ProductoModelMongoDB {
     async conectarDB() {
 
         try {// en caso de cambiar a remoto, cambiar aca
-            await mongoose.connect(process.env.URI_MONGODB_LOCAL)
+            await mongoose.connect(process.env.URI_MONGODB_REMOTA)
             console.log('Base de datos conectada!')
         } catch (error) {
             console.log(`MongoDB error al conectar ${error}`)
