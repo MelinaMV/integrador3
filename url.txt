@@ -1,4 +1,4 @@
 GITHUB
-https://github.com/MelinaMV/Integrador-3era-parte
+https://github.com/MelinaMV/integrador3
 RAILWAY
-integrador-3era-parte-production.up.railway.app
+https://integrador3-production.up.railway.app/
