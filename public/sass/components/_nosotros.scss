@@ -1,6 +1,20 @@
 
-//error:
-//Refused to apply style from '<URL>' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled.
+//error solucionado
 
-//otro error: hago un cambio en sass en contacto por ejemplo y me cambia todas las paginas
-//al entrar en contacto y nosotros se bloquea el nav-bar 
+h1.h1sn{
+
+    @media (max-width:768px) {
+    margin-top: 90px;
+    }
+}
+.content p{
+    color: aliceblue;
+    padding: 20px;
+}
+img.img-orf{
+    padding: 20px;
+    max-width: 500px;
+    @media (max-width:515px ) {
+        max-width: 300px;
+    }
+}
